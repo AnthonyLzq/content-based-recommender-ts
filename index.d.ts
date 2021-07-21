@@ -12,7 +12,7 @@ declare class ContentBasedRecommender {
    * @param {Options} [options={}]
    * @throws an error if the maxVectorSize is not an integer or if it is lower than 0, or if maxSimilarDocs is not an integer or if it is lower than 0, or if minScore is not between 0 and 1
    */
-  setOptions(options?: Options): void
+  public setOptions(options?: Options): void
   /**
    * @type {Options}
    * @public
@@ -21,24 +21,24 @@ declare class ContentBasedRecommender {
   /**
    * @param {Document[]} documents
    */
-  train(documents: Document[]): void
+  public train(documents: Document[]): void
   /**
    * @param {Document[]} documents
    * @param {Document[]} targetDocuments
    */
-  trainBidirectional(documents: Document[], targetDocuments: Document[]): void
+  public trainBidirectional(documents: Document[], targetDocuments: Document[]): void
   /**
    * @param {Document[]} documents
    * @throws an error if the param is not an array or if properties from the elements of the array are missing or are wrong
    */
-  validateDocuments(documents: Document[]): void
+  public validateDocuments(documents: Document[]): void
   /**
    * @param {string} id - document id
    * @param {number} [start=0] - default 0
    * @param {number} [size=undefined] - default undefined
    * @return {DocumentVector[]}
    */
-  getSimilarDocuments(
+  public getSimilarDocuments(
     id: string,
     start?: number,
     size?: number
@@ -46,17 +46,17 @@ declare class ContentBasedRecommender {
   /**
    * @return {Export}
    */
-  export(): Export
+  public export(): Export
   /**
    * @param {Export} object
    */
-  import(object: Export): void
+  public import(object: Export): void
   /**
    * @param {Document[]} documents
    * @param {Options[]} [options]
    * @returns {ProcessedDocument[]}
    */
-  _processDocuments(
+  private _processDocuments(
     documents: Document[],
     options?: Options[]
   ): ProcessedDocument[]
@@ -64,13 +64,13 @@ declare class ContentBasedRecommender {
    * @param {string} content - Content from a document
    * @returns {string[]} - Tokens from the content of a document (keywords)
    */
-  _getTokensFromString(content: string): string[]
+  private _getTokensFromString(content: string): string[]
   /**
    * @param {ProcessedDocument[]} processedDocuments - Processed documents
    * @param {Options} options
    * @returns {DocumentVector[]} - Document id with its vector
    */
-  _produceWordVectors(
+  private _produceWordVectors(
     processedDocuments: ProcessedDocument[],
     options: Options
   ): DocumentVector[]
@@ -80,7 +80,7 @@ declare class ContentBasedRecommender {
    * @param {Options} options
    * @returns {Data}
    */
-  _calculateSimilaritiesBetweenTwoVectors(
+  private _calculateSimilaritiesBetweenTwoVectors(
     documentVectors: DocumentVector[],
     targetDocumentVectors: DocumentVector[],
     options: Options
@@ -89,13 +89,13 @@ declare class ContentBasedRecommender {
    * @param {DocumentVector[]} documentVectors
    * @returns {Data} - object which keys are every document id and its value is an empty array
    */
-  initializeDataHash(documentVectors: DocumentVector[]): Data
+  public initializeDataHash(documentVectors: DocumentVector[]): Data
   /**
    * @param {DocumentVector[]} documentVectors
    * @param {Options} options
    * @returns {Data}
    */
-  _calculateSimilarities(
+  private _calculateSimilarities(
     documentVectors: DocumentVector[],
     options: Options
   ): Data
@@ -103,7 +103,7 @@ declare class ContentBasedRecommender {
    * @param {DocumentVector[]} data
    * @param {Options} options
    */
-  orderDocuments(data: DocumentVector[], options: Options): void
+  public orderDocuments(data: DocumentVector[], options: Options): void
 }
 declare namespace ContentBasedRecommender {
   export { ProcessedDocument, Options, Document, DocumentVector, Data, Export }
