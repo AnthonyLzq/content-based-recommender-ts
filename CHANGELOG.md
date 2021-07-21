@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](https://github.com/AnthonyLzq/content-based-recommender/compare/v2.0.1...v2.0.2) (2021-07-21)
+
+
+### Bug Fixes
+
+* fixed accessibility of methods in the declaration file ([8dad7f8](https://github.com/AnthonyLzq/content-based-recommender/commit/8dad7f84a426aaf9ca3098f7b60b3df1660e751e))
+
 ### [2.0.1](https://github.com/AnthonyLzq/content-based-recommender/compare/v2.0.0...v2.0.1) (2021-07-21)
 
 
