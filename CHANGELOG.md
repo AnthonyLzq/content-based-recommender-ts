@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/AnthonyLzq/content-based-recommender/compare/v2.0.3...v2.1.0) (2021-07-21)
+
+
+### Features
+
+* implemented .npmignore file ([07a14dd](https://github.com/AnthonyLzq/content-based-recommender/commit/07a14dd02f78aafeff54f8390735a954ca196a5e))
+
 ### [2.0.3](https://github.com/AnthonyLzq/content-based-recommender/compare/v2.0.2...v2.0.3) (2021-07-21)
 
 
