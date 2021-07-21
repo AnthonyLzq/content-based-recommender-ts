@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.3](https://github.com/AnthonyLzq/content-based-recommender/compare/v2.0.2...v2.0.3) (2021-07-21)
+
+
+### Bug Fixes
+
+* fixed types and docs of the data attribute, and README.md ([5a52edf](https://github.com/AnthonyLzq/content-based-recommender/commit/5a52edfbdb77d5e943034ea7721b001dd503fd7b))
+
 ### [2.0.2](https://github.com/AnthonyLzq/content-based-recommender/compare/v2.0.1...v2.0.2) (2021-07-21)
 
 
