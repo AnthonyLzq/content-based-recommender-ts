@@ -52,5 +52,5 @@
     "mocha": "^9.0.2",
     "prettier": "^2.3.2"
   },
-  "typings": "./types/index.d.ts"
+  "typings": "index.d.ts"
 }

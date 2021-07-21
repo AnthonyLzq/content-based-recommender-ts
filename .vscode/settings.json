@@ -1,6 +1,12 @@
 {
   "cSpell.words": [
+    "Stopwords",
+    "bigram",
+    "bigrams",
     "stopword",
-    "striptags"
+    "striptags",
+    "tfidf",
+    "unigram",
+    "unigrams"
   ]
 }
