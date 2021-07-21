@@ -1,9 +1,9 @@
-Content Based Recommender
-=======
+# Content Based Recommender TS
 
+This is a fork from the [content-based-recommender](https://github.com/stanleyfok/content-based-recommender) package with support for TS.
 
-[![Node.js CI](https://github.com/stanleyfok/content-based-recommender/workflows/Node.js%20CI/badge.svg)](https://github.com/stanleyfok/content-based-recommender/actions?query=workflow%3A%22Node.js+CI%22)
-[![NPM version](https://img.shields.io/npm/v/content-based-recommender.svg)](https://www.npmjs.com/package/content-based-recommender)
+<!-- [![Node.js CI](https://github.com/anthonylzq/content-based-recommender/workflows/Node.js%20CI/badge.svg)](https://github.com/stanleyfok/content-based-recommender/actions?query=workflow%3A%22Node.js+CI%22)
+[![NPM version](https://img.shields.io/npm/v/content-based-recommender.svg)](https://www.npmjs.com/package/content-based-recommender) -->
 
 This is a simple content-based recommender implemented in javascript to illustrate the concept of content-based recommendation. Content-based recommender is a popular recommendation technique to show similar items to users, especially useful to websites for e-commerce, news content, etc.
 
@@ -18,39 +18,24 @@ Special thanks to the library [natural](https://www.npmjs.com/package/natural) h
 
 **⚠️ Note:**
 
-I haven't tested how this recommender is performing with a large dataset. I will share more results after some more testing.
+I haven't tested how this recommender is performing with a large dataset.
 
 ## Installation
 
 `npm install content-based-recommender`
 
-And then import the ContentBasedRecommender class
+or
+
+`yarn add content-based-recommender`
+
+Then import the ContentBasedRecommender class
 ```js
 const ContentBasedRecommender = require('content-based-recommender')
 ```
 
 ## What's New
 
-#### 1.5.0
-
-* Added `trainBidirectional(collectionA, collectionB)` to allow recommendations between
-two different datasets
-
-#### 1.4.0
-
-Upgrade dependencies to fix security alerts
-
-#### 1.3.0
-
-Introduce the use of unigram, bigrams and trigrams when constructing the word vector
-
-#### 1.2.0
-
-Simplify the implementation by not using sorted set data structure to store the similar documents data. Also support the maxSimilarDocuments and minScore options to save memory used by the recommender.
-
-#### 1.1.0
-
-Update to newer version of [vector-object](https://www.npmjs.com/package/vector-object)
+Check the [CHANGELOG](https://github.com/AnthonyLzq/content-based-recommender-ts/blob/master/changelog).
 
 ## Usage
 
@@ -60,7 +45,7 @@ Update to newer version of [vector-object](https://www.npmjs.com/package/vector-
 const ContentBasedRecommender = require('content-based-recommender')
 const recommender = new ContentBasedRecommender({
   minScore: 0.1,
-  maxSimilarDocuments: 100
+  maxSimilarDocs: 100
 });
 
 // prepare documents data
@@ -103,88 +88,89 @@ This example shows how to automatically match posts with related tags
 const ContentBasedRecommender =  require('content-based-recommender')
 
 const posts = [
-                {
-                  id: '1000001',
-                  content: 'Why studying javascript is fun?',
-                },
-                {
-                  id: '1000002',
-                  content: 'The trend for javascript in machine learning',
-                },
-                {
-                  id: '1000003',
-                  content: 'The most insightful stories about JavaScript',
-                },
-                {
-                  id: '1000004',
-                  content: 'Introduction to Machine Learning',
-                },
-                {
-                  id: '1000005',
-                  content: 'Machine learning and its application',
-                },
-                {
-                  id: '1000006',
-                  content: 'Python vs Javascript, which is better?',
-                },
-                {
-                  id: '1000007',
-                  content: 'How Python saved my life?',
-                },
-                {
-                  id: '1000008',
-                  content: 'The future of Bitcoin technology',
-                },
-                {
-                  id: '1000009',
-                  content: 'Is it possible to use javascript for machine learning?',
-                },
-              ];
+  {
+    id: '1000001',
+    content: 'Why studying javascript is fun?'
+  },
+  {
+    id: '1000002',
+    content: 'The trend for javascript in machine learning'
+  },
+  {
+    id: '1000003',
+    content: 'The most insightful stories about JavaScript'
+  },
+  {
+    id: '1000004',
+    content: 'Introduction to Machine Learning'
+  },
+  {
+    id: '1000005',
+    content: 'Machine learning and its application'
+  },
+  {
+    id: '1000006',
+    content: 'Python vs Javascript, which is better?'
+  },
+  {
+    id: '1000007',
+    content: 'How Python saved my life?'
+  },
+  {
+    id: '1000008',
+    content: 'The future of Bitcoin technology'
+  },
+  {
+    id: '1000009',
+    content: 'Is it possible to use javascript for machine learning?'
+  }
+]
 
 const tags = [
-               {
-                 id: '1',
-                 content: 'Javascript',
-               },
-               {
-                 id: '2',
-                 content: 'machine learning',
-               },
-               {
-                 id: '3',
-                 content: 'application',
-               },
-               {
-                 id: '4',
-                 content: 'introduction',
-               },
-               {
-                 id: '5',
-                 content: 'future',
-               },
-               {
-                 id: '6',
-                 content: 'Python',
-               },
-               {
-                 id: '7',
-                 content: 'Bitcoin',
-               },
-             ];
+  {
+    id: '1',
+    content: 'Javascript'
+  },
+  {
+    id: '2',
+    content: 'machine learning'
+  },
+  {
+    id: '3',
+    content: 'application'
+  },
+  {
+    id: '4',
+    content: 'introduction'
+  },
+  {
+    id: '5',
+    content: 'future'
+  },
+  {
+    id: '6',
+    content: 'Python'
+  },
+  {
+    id: '7',
+    content: 'Bitcoin'
+  }
+]
 
 const tagMap = tags.reduce((acc, tag) => {
-  acc[tag.id] = tag;
-  return acc;
+  acc[tag.id] = tag
+
+  return acc
 }, {});
 
-const recommender = new ContentBasedRecommender();
+const recommender = new ContentBasedRecommender()
 
-recommender.trainBidirectional(posts, tags);
+recommender.trainBidirectional(posts, tags)
 
-for (let post of posts) {
-  const relatedTags = recommender.getSimilarDocuments(post.id);
-  const tags = relatedTags.map(t => tagMap[t.id].content);
-  console.log(post.content, 'related tags:', tags);
+for (const post of posts) {
+  const relatedTags = recommender.getSimilarDocuments(post.id)
+  const tags = relatedTags.map(t => tagMap[t.id].content)
+  console.log(post.content, 'related tags:', tags)
 }
 
 
@@ -215,7 +201,7 @@ Supported options:
 
 * maxVectorSize - to control the max size of word vector after tf-idf processing. A smaller vector size will help training performance while not affecting recommendation quality. Defaults to be 100.
 * minScore - the minimum score required to meet to consider it is a similar document. It will save more memory by filtering out documents having low scores. Allowed values range from 0 to 1. Default is 0.
-* maxSimilarDocuments - the maximum number of similar documents to keep for each document. Default is the [max safe integer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER) in javascript.
+* maxSimilarDocs - the maximum number of similar documents to keep for each document. Default is the [max safe integer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER) in javascript.
 * debug - show progress messages so can monitor the training progress
 
 ### train(documents)
@@ -269,6 +255,7 @@ npm run test
 ## Authors
 
   - [Stanley Fok](https://github.com/stanleyfok)
+  - [AnthonyLzq](https://github.com/anthonylzq)
 
 ## License
 

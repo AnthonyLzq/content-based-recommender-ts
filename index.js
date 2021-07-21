@@ -1,1 +1,1 @@
-module.exports = require('./lib/ContentBasedRecommender');
+module.exports = require('./lib/ContentBasedRecommender')

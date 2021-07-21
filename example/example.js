@@ -1,20 +1,19 @@
-const ContentBasedRecommender = require('../index.js');
-const posts = require('../fixtures/sample-documents');
-const tags = require('../fixtures/sample-document-tags');
+const ContentBasedRecommender = require('../index.js')
+const posts = require('../fixtures/sample-documents')
+const tags = require('../fixtures/sample-document-tags')
 
 const tagMap = tags.reduce((acc, tag) => {
-  acc[tag.id] = tag;
-  return acc;
-}, {});
+  acc[tag.id] = tag
 
-const recommender = new ContentBasedRecommender();
+  return acc
+}, {})
 
-recommender.trainBidirectional(posts, tags);
+const recommender = new ContentBasedRecommender()
 
-for (let post of posts) {
-  const relatedTags = recommender.getSimilarDocuments(post.id);
-  const tags = relatedTags.map(t => tagMap[t.id].content);
-  console.log(post.content, 'related tags:', tags);
+recommender.trainBidirectional(posts, tags)
+
+for (const post of posts) {
+  const relatedTags = recommender.getSimilarDocuments(post.id)
+  const tags = relatedTags.map(t => tagMap[t.id].content)
+  console.log(post.content, 'related tags:', tags)
 }
-
-
