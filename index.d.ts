@@ -1,23 +1,23 @@
 declare class ContentBasedRecommender {
   /**
-   * @param {Options} [options={}] - default {}
-   */
-  constructor(options?: Options)
-  /**
    * @type {Data}
    * @public
    */
   public data: Data
   /**
-   * @param {Options} [options={}]
-   * @throws an error if the maxVectorSize is not an integer or if it is lower than 0, or if maxSimilarDocs is not an integer or if it is lower than 0, or if minScore is not between 0 and 1
-   */
-  public setOptions(options?: Options): void
-  /**
    * @type {Options}
    * @public
    */
   public options: Options
+  /**
+   * @param {Options} [options={}] - default {}
+   */
+  constructor(options?: Options)
+  /**
+   * @param {Options} [options={}]
+   * @throws an error if the maxVectorSize is not an integer or if it is lower than 0, or if maxSimilarDocs is not an integer or if it is lower than 0, or if minScore is not between 0 and 1
+   */
+  public setOptions(options?: Options): void
   /**
    * @param {Document[]} documents
    */
@@ -26,7 +26,10 @@ declare class ContentBasedRecommender {
    * @param {Document[]} documents
    * @param {Document[]} targetDocuments
    */
-  public trainBidirectional(documents: Document[], targetDocuments: Document[]): void
+  public trainBidirectional(
+    documents      : Document[],
+    targetDocuments: Document[]
+  ): void
   /**
    * @param {Document[]} documents
    * @throws an error if the param is not an array or if properties from the elements of the array are missing or are wrong
@@ -36,13 +39,13 @@ declare class ContentBasedRecommender {
    * @param {string} id - document id
    * @param {number} [start=0] - default 0
    * @param {number} [size=undefined] - default undefined
-   * @return {DocumentVector[]}
+   * @return {DocumentScore[]}
    */
   public getSimilarDocuments(
-    id: string,
+    id    : string,
     start?: number,
-    size?: number
-  ): DocumentVector[]
+    size? : number
+  ): DocumentScore[]
   /**
    * @return {Export}
    */
@@ -58,7 +61,7 @@ declare class ContentBasedRecommender {
    */
   private _processDocuments(
     documents: Document[],
-    options?: Options[]
+    options? : Options[]
   ): ProcessedDocument[]
   /**
    * @param {string} content - Content from a document
@@ -72,7 +75,7 @@ declare class ContentBasedRecommender {
    */
   private _produceWordVectors(
     processedDocuments: ProcessedDocument[],
-    options: Options
+    options           : Options
   ): DocumentVector[]
   /**
    * @param {DocumentVector[]} documentVectors
@@ -81,9 +84,9 @@ declare class ContentBasedRecommender {
    * @returns {Data}
    */
   private _calculateSimilaritiesBetweenTwoVectors(
-    documentVectors: DocumentVector[],
+    documentVectors      : DocumentVector[],
     targetDocumentVectors: DocumentVector[],
-    options: Options
+    options              : Options
   ): Data
   /**
    * @param {DocumentVector[]} documentVectors
@@ -97,19 +100,29 @@ declare class ContentBasedRecommender {
    */
   private _calculateSimilarities(
     documentVectors: DocumentVector[],
-    options: Options
+    options        : Options
   ): Data
   /**
-   * @param {DocumentVector[]} data
+   * @param {DocumentScore[]} data
    * @param {Options} options
    */
   public orderDocuments(data: DocumentVector[], options: Options): void
 }
+
 declare namespace ContentBasedRecommender {
-  export { ProcessedDocument, Options, Document, DocumentVector, Data, Export }
+  export {
+    ProcessedDocument,
+    Options,
+    Document,
+    DocumentVector,
+    DocumentScore,
+    Data,
+    Export
+  }
 }
+
 type Data = {
-  [x: string]: DocumentVector
+  [x: string]: DocumentScore
 }
 /**
  * - Options to create a ContentBasedRecommender
@@ -132,18 +145,22 @@ type Options = {
    */
   debug: boolean
 }
+
 type Document = {
-  id: string
+  id     : string
   content: string
 }
-type DocumentVector = {
-  id: string
-  vector: any
+
+type DocumentScore = {
+  id   : string
+  score: number
 }
+
 type Export = {
-  data: Data
+  data   : Data
   options: Options
 }
+
 type ProcessedDocument = {
   /**
    * - document id
@@ -153,6 +170,11 @@ type ProcessedDocument = {
    * - tokens from the content of the document (keywords)
    */
   tokens: string[]
+}
+
+type DocumentVector = {
+  id    : string
+  vector: any
 }
 
 export = ContentBasedRecommender

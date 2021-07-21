@@ -2,8 +2,8 @@
 
 This is a fork from the [content-based-recommender](https://github.com/stanleyfok/content-based-recommender) package with support for TS.
 
-<!-- [![Node.js CI](https://github.com/anthonylzq/content-based-recommender/workflows/Node.js%20CI/badge.svg)](https://github.com/stanleyfok/content-based-recommender/actions?query=workflow%3A%22Node.js+CI%22)
-[![NPM version](https://img.shields.io/npm/v/content-based-recommender.svg)](https://www.npmjs.com/package/content-based-recommender) -->
+[![Node.js CI](https://github.com/anthonylzq/content-based-recommender/workflows/Node.js%20CI/badge.svg)](https://github.com/stanleyfok/content-based-recommender/actions?query=workflow%3A%22Node.js+CI%22)
+[![NPM version](https://img.shields.io/npm/v/content-based-recommender.svg)](https://www.npmjs.com/package/content-based-recommender)
 
 This is a simple content-based recommender implemented in javascript to illustrate the concept of content-based recommendation. Content-based recommender is a popular recommendation technique to show similar items to users, especially useful to websites for e-commerce, news content, etc.
 
@@ -46,7 +46,7 @@ const ContentBasedRecommender = require('content-based-recommender')
 const recommender = new ContentBasedRecommender({
   minScore: 0.1,
   maxSimilarDocs: 100
-});
+})
 
 // prepare documents data
 const documents = [
@@ -59,15 +59,15 @@ const documents = [
   { id: '1000007', content: 'How Python saved my life?' },
   { id: '1000008', content: 'The future of Bitcoin technology' },
   { id: '1000009', content: 'Is it possible to use javascript for machine learning?' }
-];
+]
 
 // start training
-recommender.train(documents);
+recommender.train(documents)
 
 //get top 10 similar items to document 1000002
-const similarDocuments = recommender.getSimilarDocuments('1000002', 0, 10);
+const similarDocuments = recommender.getSimilarDocuments('1000002', 0, 10)
 
-console.log(similarDocuments);
+console.log(similarDocuments)
 /*
   the higher the score, the more similar the item is
   documents with score < 0.1 are filtered because options minScore is set to 0.1
@@ -161,7 +161,7 @@ const tagMap = tags.reduce((acc, tag) => {
   acc[tag.id] = tag
 
   return acc
-}, {});
+}, {})
 
 const recommender = new ContentBasedRecommender()
 
@@ -230,10 +230,10 @@ It returns an array of objects, with fields **id** and **score** (ranging from 0
 
 To export the recommender as json object.
 ```js
-const recommender = new ContentBasedRecommender();
-recommender.train(documents);
+const recommender = new ContentBasedRecommender()
+recommender.train(documents)
 
-const object = recommender.export();
+const object = recommender.export()
 //can save the object to disk, database or otherwise
 ```
 
@@ -241,14 +241,14 @@ const object = recommender.export();
 
 To update the recommender by importing from a json object, exported by the export() method
 ```js
-const recommender = new ContentBasedRecommender();
-recommender.import(object); // object can be loaded from disk, database or otherwise
+const recommender = new ContentBasedRecommender()
+recommender.import(object) // object can be loaded from disk, database or otherwise
 ```
 
 ## Test
 
 ```bash
-npm install
+npm i
 npm run test
 ```
 
